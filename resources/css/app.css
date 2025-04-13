@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .container {
+        width: 600px;
+        margin-inline: auto;
+    }
+    @media screen and (max-width: 650px) {
+        .container {
+            width: 93%;
+        }
+    }
+}
+@font-face {
+    font-family: iran-sans;
+    src: url('../fonts/A-Iranian-Sans/Iranian\ Sans.ttf');
+}
+
 /*@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views!*.blade.php';*/
 /*@source '../../storage/framework/views!*.php';*/
 /*@source '..!**!*.blade.php';*/
@@ -11,3 +27,34 @@
 /*    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',*/
 /*        'Segoe UI Symbol', 'Noto Color Emoji';*/
 /*}*/
+
+* {
+    font-family: iran-sans;
+    user-select: none;
+}
+
+
+
+
+.transition-section {
+    transform: translateY(25px);
+    visibility: hidden;
+    opacity: 0;
+    animation: section-animation 0.5s linear 1 forwards;
+}
+@keyframes section-animation {
+    0% { 
+        transform: translateY(25px);
+        visibility: hidden;
+        opacity: 0;
+    }
+    100% { 
+        transform: translateY(0px);
+        visibility: visible;
+        opacity: 1;
+     }
+}
+.activ_article{
+    background-color: rgb(254 249 195);
+    border: 2px solid rgb(211, 190, 1);
+}
