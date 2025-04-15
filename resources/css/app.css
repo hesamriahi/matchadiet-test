@@ -13,9 +13,28 @@
         }
     }
 }
+
+* {
+    font-family: persian-font;
+    user-select: none;
+}
+
+
 @font-face {
-    font-family: iran-sans;
-    src: url('../fonts/A-Iranian-Sans/Iranian\ Sans.ttf');
+    font-family: persian-font;
+    src: url('../fonts/persian-font/c7178acf770b8f1a-s.p.ttf');
+}
+@font-face {
+    font-family: persian-font;
+    src: url('../fonts/persian-font/c211d66609cf9971-s.p.ttf');
+}
+@font-face {
+    font-family: persian-font;
+    src: url('../fonts/persian-font/426f438e1c1aba97-s.p.ttf');
+}
+@font-face {
+    font-family: persian-font;
+    src: local('Arial');
 }
 
 /*@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views!*.blade.php';*/
@@ -28,10 +47,7 @@
 /*        'Segoe UI Symbol', 'Noto Color Emoji';*/
 /*}*/
 
-* {
-    font-family: iran-sans;
-    user-select: none;
-}
+
 
 
 

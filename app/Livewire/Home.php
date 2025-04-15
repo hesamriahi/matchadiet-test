@@ -8,10 +8,14 @@ use Livewire\Component;
 class Home extends Component
 {
     public $progressBarPercentage;
-    public $step = 1;
+    public $step = 12;
     public $height = null;
     public $weight = null;
     public $idealWeight = null;
+
+    protected $listeners = [
+        "HomeNextStep" => "nextStep",
+    ];
 
     public function mount()
     {
@@ -21,9 +25,7 @@ class Home extends Component
     public function progressBarPercentageCalculator()
     {
         if ($this->step == 17) $this->progressBarPercentage = 100;
-        else {
-            $this->progressBarPercentage = (int)round(($this->step / 17) * 100);
-        }
+        else $this->progressBarPercentage = (int)round(($this->step / 17) * 100);
     }
 
     public function nextStep()
@@ -47,13 +49,15 @@ class Home extends Component
         switch ($newStep)
         {
             case 3:
-                if (!$this->height) $this->error('لطفا قد خود را وارد کنید!');
+                if (!$this->height) throw ValidationException::withMessages(['height' => 'لطفا قد خود را وارد کنید!']);
                 break;
             case 4:
-                if (!$this->weight) $this->error('لطفا وزن خود را وارد کنید!');
+                if (!$this->weight)
+                    throw ValidationException::withMessages(['weight' => 'لطفا وزن خود را وارد کنید!']);
                 break;
             case 5:
-                if (!$this->idealWeight) $this->error('لطفا وزن ایده آل خود را وارد کنید!');
+                if (!$this->idealWeight)
+                    throw ValidationException::withMessages(['idealWeight' => 'لطفا وزن ایده آل خود را وارد کنید!']);
                 break;
         }
     }

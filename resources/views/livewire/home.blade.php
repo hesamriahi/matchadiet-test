@@ -20,14 +20,14 @@
             </div>
         </section>
         <style>#progressBar:after { width: {{ $progressBarPercentage }}%;}</style>
-        <div id="progressBar" class="w-[95%] mx-auto h-2 bg-[#e9ecef] rounded-lg relative overflow-hidden
+        <div id="progressBar" class="w-[95%] mx-auto h-[6px] bg-[#e9ecef] rounded-lg relative overflow-hidden
             after:absolute after:h-full after:bg-green-500 {{--after:w-[{{ $progressBarPercentage }}%]--}} after:top-0 after:right-0" style="">
         </div>
     </header>
 @switch($step)
     @case(1)
         <section class="container mt-8 flex flex-col gap-2 ">
-            <p class=" transition-section">
+            <p class="transition-section text-lg">
                 هوش مصنوعی تناسب‌اندام ماچا، یکی از اولین و
                 هوشمندترین <strong>هوش‌مصنوعی‌های تخصصی تناسب‌اندام</strong> در دنیاست که با استفاده از
                 آخرین
@@ -39,23 +39,15 @@
             <video autoplay muted playsinline class="h-[419px] video">
                 <source src="{{ asset('videos/machine-learning.webm') }}" type="video/webm">
             </video>
-            <p class=" transition-section">
+            <p class="transition-section text-lg">
                 همچنین، هوش مصنوعی ماچا، اولین کالری‌شمار تصویری
                 ایران و سومین <strong>کالری‌شمار تصویری هوشمند دنیا</strong> رو ارائه داده که راه رو برای
                 رسیدن به
                 تناسب‌اندام
                 خیلی راحت کرده
             </p>
-            <p class="transition-section">
-                همچنین، هوش مصنوعی ماچا، اولین کالری‌شمار تصویری
-                ایران و سومین <strong>کالری‌شمار تصویری هوشمند دنیا</strong> رو ارائه داده که راه رو برای
-                رسیدن به تناسب‌اندام
-                خیلی راحت کرده
-            </p>
         </section>
-        <div class="container sticky bottom-[10px]">
-            <button wire:click="nextStep" class="bg-green-300 text-white rounded-lg w-full py-2">بعدی</button>
-        </div>
+        <livewire:progress-button :isSticky="true"/>
         @break
     @case(2)
         <section class="container mt-8 transition-section">
@@ -66,6 +58,9 @@
                     <!-- todo: persian font for this input -->
                     <input wire:model.live="height" name="height" type="text" class="grow bg-transparent w-full outline-none" dir="ltr" maxlength="3">
                 </div>
+                @error('height')
+                    <div class="text-red-700 text-sm mt-1"><span>{{ $message }}</span></div>
+                @enderror
             </form>
 
             <div class="mt-6 bg-[#ebf5ff] py-4 px-3">
@@ -80,10 +75,7 @@
                 </p>
             </div>
 
-            <div class=" mt-3">
-                <!-- cursor-not-allowed && disabled for that time that it has no data in input  -->
-                <button wire:click="nextStep" type="submit" class="bg-gray-200 font-bold rounded-lg w-full py-2">ثبت</button>
-            </div>
+            <livewire:progress-button :isSticky="false" :buttonText="'ثبت'"/>
         </section>
         @break
     @case(3)
@@ -96,6 +88,9 @@
                     <input wire:model.live.debounce.250ms="weight" id="weightInput" name="weight" type="text" class="grow bg-transparent w-full outline-none" dir="ltr" maxlength="3">
                 </div>
             </form>
+            @error('weight')
+            <div class="text-red-700 text-sm mt-1"><span>{{ $message }}</span></div>
+            @enderror
             @if($weight && $height)
                 <div id="BmiBox" class="mt-6 bg-[#ebf5ff] py-4 px-3">
                     <div class="flex items-center gap-1">
@@ -122,10 +117,7 @@
                     <p class="text-xs mt-1 leading-loose text-gray-500">هوش مصنوعی ماچا به کمک این اطلاعات، میزان اضافه وزن و شرایط بدنیت رو تحلیل میکنه و بهت میگه در چه وضعیتی هستی.</p>
                 </div>
             @endif
-            <div class=" mt-8">
-                <!-- cursor-not-allowed && disabled for that time that it has no data in input  -->
-                <button wire:click="nextStep" class="bg-gray-200 font-bold rounded-lg w-full py-2">ثبت</button>
-            </div>
+            <livewire:progress-button :isSticky="false" :buttonText="'ثبت'"/>
         </section>
         @break
     @case(4)
@@ -138,10 +130,10 @@
                     <input wire:model.live="idealWeight" name="idealWeight" type="text" class="grow bg-transparent w-full outline-none" dir="ltr" maxlength="3">
                 </div>
             </form>
-            <div class=" mt-8">
-                <!-- cursor-not-allowed && disabled for that time that it has no data in input  -->
-                <button wire:click="nextStep" class="bg-gray-200 font-bold rounded-lg w-full py-2">ثبت</button>
-            </div>
+            @error('idealWeight')
+                <div class="text-red-700 text-sm mt-1"><span>{{ $message }}</span></div>
+            @enderror
+            <livewire:progress-button :isSticky="false" :buttonText="'ثبت'"/>
 
             <div class="py-4 px-3 bg-[#FBFBFB] mt-8 rounded-lg border border-solid border-b-gray-200">
                 <p class="text-sm md:text-base leading-loose ">
@@ -161,27 +153,21 @@
             <div class="mt-8">
                 <article class="w-full hover:bg-yellow-100  bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb1.webp') }}" alt="">
                     </figure>
                     <h4>معمولی</h4>
                 </article>
                 <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb2.webp') }}" alt="">
                     </figure>
-                    <h4>معمولی</h4>
+                    <h4>یکم اضافه وزن دارم</h4>
                 </article>
                 <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
                         <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
                     </figure>
-                    <h4>معمولی</h4>
-                </article>
-                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
-                    <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
-                    </figure>
-                    <h4>معمولی</h4>
+                    <h4>چاقم :)</h4>
                 </article>
             </div>
         </section>
@@ -194,28 +180,28 @@
                 در نظر گرفتن کالری و ارزش غذایی دریافتی روزانه، در روند کاهش وزن خیلی موثره
             </p>
             <div class="mt-8">
-                <article class="w-full hover:bg-yellow-100  bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden p-4" wire:click="nextStep" onclick="clickArticle(this)">
-                    <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                <article class="w-full hover:bg-yellow-100 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-4" wire:click="nextStep" onclick="clickArticle(this)">
+                    <figure class="w-[70px]">
+                        <img class="w-full" src="{{ asset('images/smiling.png') }}" alt="fastfitb3">
                     </figure>
                     <h4>آره دقیق و ریزبه‌ریز حساب میکنم</h4>
                 </article>
-                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden p-4 " wire:click="nextStep" onclick="clickArticle(this)">
+                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-4" wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/happy-face.png') }}" alt="fastfitb3">
                     </figure>
                     <h4>همیشه دوست دارم حساب کنم اما اینقدر کار سختیه که از دستم در میره</h4>
                 </article>
-                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden p-4 " wire:click="nextStep" onclick="clickArticle(this)">
+                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-4" wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/thoughtful-emoji.png') }}" alt="">
                     </figure>
                     <h4>قبلا اپ کالری‌شمار داشتم اما اینقدر استفاده ازش سخت بود و طول میکشید که کنارش
                         گذاشتم</h4>
                 </article>
-                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden p-4 " wire:click="nextStep" onclick="clickArticle(this)">
+                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-4" wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/sad-face.png') }}" alt="">
                     </figure>
                     <h4>نه، حوصله حساب‌کتاب و وزن‌کردن غذا رو ندارم.</h4>
                 </article>
@@ -229,17 +215,13 @@
                 غذایی که میخوری رو حساب کنی
             </p>
             <video autoplay muted playsinline class="h-[419px] video">
-                <source src="{{ asset('videos/machine-learning.webm') }}" type="video/webm">
+                <source src="{{ asset('videos/mobile-scan.webm') }}" type="video/webm">
             </video>
             <p class="transition-section">فقط کافیه از غذات عکس بگیری تا <strong>هوش‌مصنوعی ماچا</strong>
                 دقیق ثبت کنه این غذا مقدارش چقدره و چقدر کالری داره
             </p>
         </section>
-        <div class="container mt-8">
-            <button wire:click="nextStep" class="bg-green-300 text-white rounded-lg w-full py-2">
-                بعدی
-            </button>
-        </div>
+        <livewire:progress-button :isSticky="true"/>
         @break
     @case(8)
         <section class="container mt-8 transition-section">
@@ -248,19 +230,19 @@
             <div class="mt-8">
                 <article class="w-full hover:bg-yellow-100  bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb4.webp') }}" alt="">
                     </figure>
                     <h4>لاغرتر بشم</h4>
                 </article>
                 <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb5.webp') }}" alt="">
                     </figure>
                     <h4>هیکلم رو فُرم باشه</h4>
                 </article>
                 <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb6.webp') }}" alt="">
                     </figure>
                     <h4>عضلانی و بدون چربی باشم</h4>
                 </article>
@@ -276,25 +258,25 @@
             <div class="mt-8">
                 <article class="w-full hover:bg-yellow-100  bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 "wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb7.webp') }}" alt="">
                     </figure>
                     <h4>شکم </h4>
                 </article>
                 <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 "wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb8.webp') }}" alt="">
                     </figure>
                     <h4> فیله و باسن</h4>
                 </article>
                 <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 "wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb9.webp') }}" alt="">
                     </figure>
                     <h4>سینه و سرشونه</h4>
                 </article>
                 <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 "wire:click="nextStep" onclick="clickArticle(this)">
                     <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
+                        <img class="w-full" src="{{ asset('images/fastfitb10.webp') }}" alt="">
                     </figure>
                     <h4>پاها</h4>
                 </article>
@@ -310,15 +292,13 @@
                 رژیم‌های سخت و محدودکننده نمیریم.
             </p>
             <video autoplay muted playsinline class="h-[419px] video">
-                <source src="{{ asset('videos/machine-learning.webm') }}" type="video/webm">
+                <source src="{{ asset('videos/chart-big.webm') }}" type="video/webm">
             </video>
             <p class="transition-section">تا کنون <strong>89٪</strong> کاربران ماچا در بازه <strong>2
                     ماهه</strong> به وزن ایده‌آلشون رسیدن.
             </p>
         </section>
-        <div class="container mt-8">
-            <button wire:click="nextStep" class="bg-green-300 text-white rounded-lg w-full py-2">بعدی</button>
-        </div>
+        <livewire:progress-button :isSticky="true"/>
         @break
     @case(11)
         <section class="container mt-8 transition-section">
@@ -381,9 +361,23 @@
             <p class="text-sm text-gray-500 mt-6 px-10 text-center">
                 در طراحی برنامت، حتما این تاریخ رو در نظر میگیریم.
             </p>
-            <div class="container mt-8">
-                <button wire:click="nextStep" class="bg-green-300 text-white rounded-lg w-full py-2">انتخاب تاریخ</button>
+
+            <div class="items-center">
+                <x-persian-datepicker
+                        label="Label"
+                        showFormat="jYYYY/jMM/jDD"
+                        returnFormat="X"
+                        :required="false"
+                        :defaultDate="date('Y-m-d H:i:s')"
+                        :setNullInput="true"
+                        :withTime="false"
+                        :ignoreWire="true"
+                        :withTimeSeconds="false"
+                />
             </div>
+
+
+            <livewire:progress-button :isSticky="false" :buttonText="'انتخاب تاریخ'"/>
         </section>
 
         @break
@@ -394,7 +388,6 @@
                 آقایانی که در بازه سنی تو هستن، با توجه به سبک زندگی که دارن، ممکنه روش لاغری متفاوتی رو
                 لازم داشته باشن.
             </p>
-
 
             <article class="py-7 hover:bg-yellow-100 px-3 bg-gray-100 mt-8 rounded-lg border border-solid border-b-gray-200" wire:click="nextStep" onclick="clickArticle(this)">
                 <p class="text-sm md:text-base leading-loose ">
@@ -426,9 +419,10 @@
                     اذیت نشی
                 </p>
             </div>
-            <div class="container mt-8 sticky bottom-5">
-                <button wire:click="nextStep" class="bg-green-300 text-white rounded-lg w-full py-2">بغدی</button>
-            </div>
+            <livewire:progress-button :isSticky="true" />
+{{--            <div class="container mt-8 sticky bottom-5">--}}
+{{--                <button wire:click="nextStep" class="bg-green-300 text-white rounded-lg w-full py-2">بغدی</button>--}}
+{{--            </div>--}}
         </section>
         @break
     @case(15)
@@ -442,9 +436,10 @@
                 </figure>
                 <p class=" mt-6 ">کاربران ماچا، هر هفته <strong>1 تا 1.5 کیلوگرم</strong> لاغر میشن.</p>
             </div>
-            <div class="container mt-8 sticky bottom-5">
-                <button wire:click="nextStep" class="bg-green-300 text-white rounded-lg w-full py-2">بغدی</button>
-            </div>
+            <livewire:progress-button :isSticky="true"/>
+{{--            <div class="container mt-8 sticky bottom-5">--}}
+{{--                <button wire:click="nextStep" class="bg-green-300 text-white rounded-lg w-full py-2">بغدی</button>--}}
+{{--            </div>--}}
         </section>
         @break
     @case(16)
