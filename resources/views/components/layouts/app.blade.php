@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css'])
 
+    <link rel="icon" href="{{ asset('images/favicon_matcha.ico') }}">
+
     <title>{{ $title ?? 'Page Title' }}</title>
 
 </head>
 <body>
 
-    {{ $header }}
     {{ $slot }}
     {{--        @livewireScripts--}}
     @vite(['resources/js/app.js'])
     <script >
-function clickArticle(e) {
-    e.classList.add("activ_article")
-    
-}
+        function clickArticle(e) {
+            e.classList.add("active_article")
+        }
     </script>
 
 
