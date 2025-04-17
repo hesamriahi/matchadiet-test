@@ -19,7 +19,7 @@
          x-data="persianDatepicker('{{ $uniqueId  }}','{{ $defaultDate  }}','{{ $setNullInput  }}','{{ $withTime  }}','{{ $showFormat }}','{{ $returnFormat }}','{{ $currentView }}','{{ $minDate }}','{{ $maxDate }}')"
          x-init="[initDate(), getNoOfDays()]" id="{{$uniqueId}}"
          x-cloak>
-        <div class="relative pdp-input-area">
+        <div class="relative pdp-input-area" style="display: none">
             <input type="text" name="datepickerDate" class="dp-return-input hidden"
                    @input="$wire.set('{{$wirePropertyName}}', (!$event.target.value ? null : $event.target.value) )">
             @if($label)
@@ -52,9 +52,9 @@
             </div>
         </div>
         <div
-                class="bg-white z-40 rounded-lg shadow p-4 absolute left-0"
-                style="width: 17rem"
-                x-show.transition="showDatepicker"
+                class="bg-white z-40 rounded-lg shadow p-4 block mx-auto my-4"
+                style="width: 17rem; display: block"
+{{--                x-show.transition="showDatepicker"--}}
                 @click.away="showDatepicker = false">
 
             <div class="flex justify-between items-center mb-2">
@@ -144,12 +144,12 @@
                 </div>
             </div>
 
-            <div class="flex mt-1">
-                <button type="button" @click="goToToday()"
-                        class="inline-flex items-center w-full justify-center px-4 py-2 !bg-sky-500 text-white shadow-md border border-transparent rounded-lg text-xs text-white focus:outline-none disabled:opacity-25 transition">
-                    امروز
-                </button>
-            </div>
+{{--            <div class="flex mt-1">--}}
+{{--                <button type="button" @click="goToToday()"--}}
+{{--                        class="inline-flex items-center w-full justify-center px-4 py-2 !bg-sky-500 text-white shadow-md border border-transparent rounded-lg text-xs text-white focus:outline-none disabled:opacity-25 transition">--}}
+{{--                    امروز--}}
+{{--                </button>--}}
+{{--            </div>--}}
         </div>
         <div class="relative pdp-time-area mt-2 flex flex-row-reverse items-center gap-1" x-show="datepickerValue && withTime"
              x-transition>

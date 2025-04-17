@@ -12,6 +12,7 @@ class Home extends Component
     public $height = null;
     public $weight = null;
     public $idealWeight = null;
+    public $actionDate = null;
 
     protected $listeners = [
         "HomeNextStep" => "nextStep",
@@ -59,13 +60,11 @@ class Home extends Component
                 if (!$this->idealWeight)
                     throw ValidationException::withMessages(['idealWeight' => 'لطفا وزن ایده آل خود را وارد کنید!']);
                 break;
+            case 13:
+                if (!$this->actionDate)
+                    throw ValidationException::withMessages(['actionDate' => 'لطفا تاریخ را انتخاب کنید!']);
+                break;
         }
-    }
-
-    private function error($message)
-    {
-        toastr()->error($message);
-        throw ValidationException::withMessages([$message]);
     }
 
     public function render()

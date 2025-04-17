@@ -362,20 +362,25 @@
                 در طراحی برنامت، حتما این تاریخ رو در نظر میگیریم.
             </p>
 
+            <div class="range-from-example"></div>
             <div class="items-center">
                 <x-persian-datepicker
-                        label="Label"
+                        wirePropertyName="actionDate"
+                        {{--                    label="Custom Label"--}}
                         showFormat="jYYYY/jMM/jDD"
                         returnFormat="X"
                         :required="false"
                         :defaultDate="date('Y-m-d H:i:s')"
                         :setNullInput="true"
+                        :minDate="date('Y-m-d H:i:s')"
                         :withTime="false"
                         :ignoreWire="true"
                         :withTimeSeconds="false"
                 />
             </div>
-
+            @error('actionDate')
+            <div class="text-red-700 text-sm mt-1"><span>{{ $message }}</span></div>
+            @enderror
 
             <livewire:progress-button :isSticky="false" :buttonText="'انتخاب تاریخ'"/>
         </section>
