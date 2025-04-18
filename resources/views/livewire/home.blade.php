@@ -26,8 +26,8 @@
     </header>
 @switch($step)
     @case(1)
-        <section class="container mt-8 flex flex-col gap-2 ">
-            <p class="transition-section text-lg">
+        <section class="container mt-8 flex flex-col gap-2 animate-fade-section">
+            <p class=" text-lg">
                 هوش مصنوعی تناسب‌اندام ماچا، یکی از اولین و
                 هوشمندترین <strong>هوش‌مصنوعی‌های تخصصی تناسب‌اندام</strong> در دنیاست که با استفاده از
                 آخرین
@@ -36,10 +36,38 @@
                 برنامه‌ی
                 ورزشی و...
                 ارائه میده</p>
-            <video autoplay muted playsinline class="h-[419px] video">
-                <source src="{{ asset('videos/machine-learning.webm') }}" type="video/webm">
-            </video>
-            <p class="transition-section text-lg">
+            <div class="w-full h-[419px] relative flex justify-center items-center">
+                <div class="w-3/4 flex justify-around absolute top-2 z-10">
+                    <figure class="w-[100px] animate-spinOnce animation-delay-1000 opacity-0">
+                        <img class="w-full" src="{{ asset('images/firstPageImages1.png') }}" alt="thumb-up">
+                    </figure>
+                    <figure class="w-[100px] animate-spinOnce animation-delay-500 opacity-0">
+                        <img class="w-full" src="{{ asset('images/firstPageImages2.png') }}" alt="thumb-up">
+                    </figure>
+                </div>
+                
+                <div class="w-full flex justify-center items-center animate-spinOnce">
+                    <figure class="w-[300px]">
+                        <img class="w-full" src="{{ asset('images/firstPageImagesMain.png') }}" alt="thumb-up">
+                    </figure>
+                </div>
+
+                <div class="w-3/4 flex justify-around absolute bottom-2 z-10">
+                    <figure class="w-[100px] animate-spinOnce animation-delay-2000 opacity-0">
+                        <img class="w-full" src="{{ asset('images/firstPageImages3.png') }}" alt="thumb-up">
+                    </figure>
+                    <figure class="w-[100px] animate-spinOnce animation-delay-1500 opacity-0">
+                        <img class="w-full" src="{{ asset('images/firstPageImages4.png') }}" alt="thumb-up">
+                    </figure>
+                </div>
+            </div>
+{{--            <video autoplay muted playsinline class="h-[419px] video">--}}
+{{--                <source src="{{ asset('videos/machine-learning.webm') }}" type="video/webm">--}}
+{{--            </video>--}}
+{{--            <figure class="w-[30px] rotate-section">--}}
+{{--                <img class="w-full" src="{{ asset('images/thumb-up.png') }}" alt="thumb-up">--}}
+{{--            </figure>--}}
+            <p class="text-lg">
                 همچنین، هوش مصنوعی ماچا، اولین کالری‌شمار تصویری
                 ایران و سومین <strong>کالری‌شمار تصویری هوشمند دنیا</strong> رو ارائه داده که راه رو برای
                 رسیدن به
@@ -50,7 +78,7 @@
         <livewire:progress-button :isSticky="true"/>
         @break
     @case(2)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">قدت چنده؟</h2>
             <form class="w-[250px] mx-auto mt-6">
                 <div class="flex w-full items-center border-2 border-solid border-green-700 p-3 gap-1">
@@ -79,7 +107,7 @@
         </section>
         @break
     @case(3)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">وزنت چقدره؟ </h2>
             <form class="w-[250px] mx-auto mt-6">
                 <div class="flex w-full items-center border-2 border-solid border-green-700 p-3 gap-1">
@@ -121,7 +149,7 @@
         </section>
         @break
     @case(4)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">به چه وزنی می خوای برسی؟ </h2>
             <form class="w-[250px] mx-auto mt-6">
                 <div class="flex w-full items-center border-2 border-solid border-green-700 p-3 gap-1">
@@ -148,7 +176,7 @@
         </section>
         @break
     @case(5)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">وضعیت فعلی هیکلت چه جوریه؟ </h2>
             <div class="mt-8">
                 <article class="w-full hover:bg-yellow-100  bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
@@ -174,7 +202,7 @@
 
         @break
     @case(6)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">وقتی مشغول غذا خوردنی، حواست به مقدارش هست؟</h2>
             <p class="text-sm text-gray-500 mt-6 px-10">
                 در نظر گرفتن کالری و ارزش غذایی دریافتی روزانه، در روند کاهش وزن خیلی موثره
@@ -210,21 +238,21 @@
         @break
     @case(7)
         <section class="container mt-8 flex flex-col gap-2 ">
-            <p class="transition-section">هوش‌مصنوعی ماچا، علاوه بر طراحی <strong>یه برنامه تناسب‌اندام ساده
+            <p class="animate-fade-section">هوش‌مصنوعی ماچا، علاوه بر طراحی <strong>یه برنامه تناسب‌اندام ساده
                     ولی کاربردی</strong>، یه ابزار فوق‌العاده هم بهت میده که بتونی ارزش‌غذایی و کالری هر
                 غذایی که میخوری رو حساب کنی
             </p>
             <video autoplay muted playsinline class="h-[419px] video">
                 <source src="{{ asset('videos/mobile-scan.webm') }}" type="video/webm">
             </video>
-            <p class="transition-section">فقط کافیه از غذات عکس بگیری تا <strong>هوش‌مصنوعی ماچا</strong>
+            <p class="animate-fade-section">فقط کافیه از غذات عکس بگیری تا <strong>هوش‌مصنوعی ماچا</strong>
                 دقیق ثبت کنه این غذا مقدارش چقدره و چقدر کالری داره
             </p>
         </section>
         <livewire:progress-button :isSticky="true"/>
         @break
     @case(8)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">دوست داری هیکلت چه‌جوری بشه؟ </h2>
 
             <div class="mt-8">
@@ -251,7 +279,7 @@
 
         @break
     @case(9)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">بیشتر دوست داری تمرکز رژیم و برنامه‌ت روی کدوم قسمت
                 از بدنت باشه؟
             </h2>
@@ -287,21 +315,21 @@
         @break
     @case(10)
         <section class="container mt-8 flex flex-col gap-2 ">
-            <p class="transition-section">
+            <p class="animate-fade-section">
                 در ماچا با تغییر سبک زندگی و عادات غذایی کاهش وزن بدون بازگشتی رو تجربه میکنی و هیچ‌وقت سراغ
                 رژیم‌های سخت و محدودکننده نمیریم.
             </p>
             <video autoplay muted playsinline class="h-[419px] video">
                 <source src="{{ asset('videos/chart-big.webm') }}" type="video/webm">
             </video>
-            <p class="transition-section">تا کنون <strong>89٪</strong> کاربران ماچا در بازه <strong>2
+            <p class="animate-fade-section">تا کنون <strong>89٪</strong> کاربران ماچا در بازه <strong>2
                     ماهه</strong> به وزن ایده‌آلشون رسیدن.
             </p>
         </section>
         <livewire:progress-button :isSticky="true"/>
         @break
     @case(11)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">مراسم یا اتفاق خاصی رو پیشِ‌رو داری که میخوای به
                 خاطرش لاغر شی؟
             </h2>
@@ -356,7 +384,7 @@
         </section>
         @break
     @case(12)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">تاریخ مسافرت کیه؟!</h2>
             <p class="text-sm text-gray-500 mt-6 px-10 text-center">
                 در طراحی برنامت، حتما این تاریخ رو در نظر میگیریم.
@@ -387,7 +415,7 @@
 
         @break
     @case(13)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">کدومیک از گزینه‌های زیر در مورد تو درست‌تره؟ </h2>
             <p class="text-sm text-gray-500 mt-6  text-center">
                 آقایانی که در بازه سنی تو هستن، با توجه به سبک زندگی که دارن، ممکنه روش لاغری متفاوتی رو
@@ -412,7 +440,7 @@
         </section>
         @break
     @case(14)
-        <section class="container flex flex-col justify-between mt-8 h-screen transition-section">
+        <section class="container flex flex-col justify-between mt-8 h-screen animate-fade-section">
             <div>
                 <figure class="w-[100px] ">
                     <img class="w-full" src="{{ asset('images/tick-mark.png') }}" alt="tick-tick-mark">
@@ -431,7 +459,7 @@
         </section>
         @break
     @case(15)
-        <section class="container flex flex-col justify-between mt-8 h-screen transition-section">
+        <section class="container flex flex-col justify-between mt-8 h-screen animate-fade-section">
             <div>
                 <h3 class="text-2xl">ادامه دادن رژیم لاغری میتونه سخت و حوصله سر بر باشه. اما هوش مصنوعی
                     ماچا بهت کمک میکنه که تا انتها رژیمت رو رعایت کنی و به هدفت برسی.
@@ -448,7 +476,7 @@
         </section>
         @break
     @case(16)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">جمله‌ی زیر چقدر در مورد تو درسته؟</h2>
             <p class="text-sm text-gray-500 mt-6 px-10">
                 بعد از خوردن غذا، احساس آرامش و راحتی بیشتری دارم
@@ -482,7 +510,7 @@
         </section>
         @break
     @case(17)
-        <section class="container mt-8 transition-section">
+        <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">
                 جمله‌ی زیر چقدر در مورد تو درسته؟
             </h2>

@@ -8,7 +8,7 @@ use Livewire\Component;
 class Home extends Component
 {
     public $progressBarPercentage;
-    public $step = 12;
+    public $step = 1;
     public $height = null;
     public $weight = null;
     public $idealWeight = null;

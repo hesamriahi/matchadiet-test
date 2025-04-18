@@ -51,25 +51,6 @@
 
 
 
-
-.transition-section {
-    transform: translateY(25px);
-    visibility: hidden;
-    opacity: 0;
-    animation: section-animation 0.5s linear 1 forwards;
-}
-@keyframes section-animation {
-    0% { 
-        transform: translateY(25px);
-        visibility: hidden;
-        opacity: 0;
-    }
-    100% { 
-        transform: translateY(0px);
-        visibility: visible;
-        opacity: 1;
-     }
-}
 .active_article{
     background-color: rgb(254 249 195);
     border: 2px solid rgb(211, 190, 1);
