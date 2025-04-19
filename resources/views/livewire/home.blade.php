@@ -3,7 +3,7 @@
 <main>
 
     <header class="w-full">
-        <span>{{$step}}</span>
+{{--        <span>{{$step}}</span>--}}
         <section class="mx-auto py-2 px-2 flex items-center">
             <button wire:click="previousStep">
                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
