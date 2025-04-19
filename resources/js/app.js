@@ -8,3 +8,5 @@
 //     });
 // });
 import './livewire-datepicker-datepicker';
+import Chart from 'chart.js/auto';
+window.Chart = Chart;

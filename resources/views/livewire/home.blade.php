@@ -80,7 +80,7 @@
     @case(2)
         <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">قدت چنده؟</h2>
-            <form class="w-[250px] mx-auto mt-6">
+            <form class="w-[250px] mx-auto mt-6" onkeypress="return event.keyCode != 13;">
                 <div class="flex w-full items-center border-2 border-solid border-green-700 p-3 gap-1">
                     <span>CM</span>
                     <!-- todo: persian font for this input -->
@@ -109,7 +109,7 @@
     @case(3)
         <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">وزنت چقدره؟ </h2>
-            <form class="w-[250px] mx-auto mt-6">
+            <form class="w-[250px] mx-auto mt-6" onkeypress="return event.keyCode != 13;">
                 <div class="flex w-full items-center border-2 border-solid border-green-700 p-3 gap-1">
                     <span>KG</span>
                     <!-- todo: persian font for this input -->
@@ -151,7 +151,7 @@
     @case(4)
         <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">به چه وزنی می خوای برسی؟ </h2>
-            <form class="w-[250px] mx-auto mt-6">
+            <form class="w-[250px] mx-auto mt-6" onkeypress="return event.keyCode != 13;">
                 <div class="flex w-full items-center border-2 border-solid border-green-700 p-3 gap-1">
                     <span>KG</span>
                     <!-- todo: persian font for this input -->
@@ -175,32 +175,51 @@
 
         </section>
         @break
-    @case(5)
-        <section class="container mt-8 animate-fade-section">
-            <h2 class="text-center font-bold text-2xl">وضعیت فعلی هیکلت چه جوریه؟ </h2>
-            <div class="mt-8">
-                <article class="w-full hover:bg-yellow-100  bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
-                    <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb1.webp') }}" alt="">
-                    </figure>
-                    <h4>معمولی</h4>
-                </article>
-                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
-                    <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb2.webp') }}" alt="">
-                    </figure>
-                    <h4>یکم اضافه وزن دارم</h4>
-                </article>
-                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">
-                    <figure class="w-[85px]">
-                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">
-                    </figure>
-                    <h4>چاقم :)</h4>
-                </article>
-            </div>
-        </section>
+        @case(5)
+            <section class="container mt-8 flex flex-col gap-2 ">
+                <p class="animate-fade-section">
+                    در ماچا با تغییر سبک زندگی و عادات غذایی کاهش وزن بدون بازگشتی رو تجربه میکنی و هیچ‌وقت سراغ
+                    رژیم‌های سخت و محدودکننده نمیریم.
+                </p>
 
-        @break
+                <section>
+                    <canvas id="myChart"></canvas>
+                </section>
+{{--                <video autoplay muted playsinline class="h-[419px] video">--}}
+{{--                    <source src="{{ asset('videos/chart-big.webm') }}" type="video/webm">--}}
+{{--                </video>--}}
+                <p class="animate-fade-section">تا کنون <strong>89٪</strong> کاربران ماچا در بازه <strong>2
+                        ماهه</strong> به وزن ایده‌آلشون رسیدن.
+                </p>
+            </section>
+            <livewire:progress-button :isSticky="true"/>
+            @break
+            {{--    @case(5)--}}
+{{--        <section class="container mt-8 animate-fade-section">--}}
+{{--            <h2 class="text-center font-bold text-2xl">وضعیت فعلی هیکلت چه جوریه؟ </h2>--}}
+{{--            <div class="mt-8">--}}
+{{--                <article class="w-full hover:bg-yellow-100  bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">--}}
+{{--                    <figure class="w-[85px]">--}}
+{{--                        <img class="w-full" src="{{ asset('images/fastfitb1.webp') }}" alt="">--}}
+{{--                    </figure>--}}
+{{--                    <h4>معمولی</h4>--}}
+{{--                </article>--}}
+{{--                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">--}}
+{{--                    <figure class="w-[85px]">--}}
+{{--                        <img class="w-full" src="{{ asset('images/fastfitb2.webp') }}" alt="">--}}
+{{--                    </figure>--}}
+{{--                    <h4>یکم اضافه وزن دارم</h4>--}}
+{{--                </article>--}}
+{{--                <article class="w-full hover:bg-yellow-100  mt-5 bg-gray-100 rounded-lg flex items-center gap-4 overflow-hidden px-5 " wire:click="nextStep" onclick="clickArticle(this)">--}}
+{{--                    <figure class="w-[85px]">--}}
+{{--                        <img class="w-full" src="{{ asset('images/fastfitb3.webp') }}" alt="">--}}
+{{--                    </figure>--}}
+{{--                    <h4>چاقم :)</h4>--}}
+{{--                </article>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+
+{{--        @break--}}
     @case(6)
         <section class="container mt-8 animate-fade-section">
             <h2 class="text-center font-bold text-2xl">وقتی مشغول غذا خوردنی، حواست به مقدارش هست؟</h2>
@@ -549,3 +568,42 @@
 
 
 </main>
+
+
+@script
+    <script>
+        $js('loadChart', ($chartLabels, $chartValues) => {
+            loadMyChart($chartLabels, $chartValues);
+        })
+
+        async function loadMyChart($chartLabels, $chartValues){
+            const ctx = await document.getElementById('myChart');
+            if (!ctx) {
+                setTimeout(loadMyChart, 100, $chartLabels, $chartValues);
+                return;
+            }
+            $chartLabels = JSON.parse($chartLabels);
+            $chartValues = JSON.parse($chartValues);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: $chartLabels,
+                    datasets: [{
+                        label: 'وزن شما در طول برنامه سی روزه',
+                        data: $chartValues,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            display: true,
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+@endscript

@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "alirahimi/livewire-persian-datepicker": "^1.2",
+        "icehouse-ventures/laravel-chartjs": "^4.2",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6"

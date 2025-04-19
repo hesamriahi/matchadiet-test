@@ -13,10 +13,13 @@ class Home extends Component
     public $weight = null;
     public $idealWeight = null;
     public $actionDate = null;
+    public $chartLabels = [];
+    public $chartValues = [];
 
     protected $listeners = [
         "HomeNextStep" => "nextStep",
     ];
+
 
     public function mount()
     {
@@ -34,6 +37,7 @@ class Home extends Component
         $this->stepValidator();
         $this->step ++;
         $this->progressBarPercentageCalculator();
+        if ($this->step == 5) $this->chartGenerator();
     }
 
     public function previousStep()
@@ -42,6 +46,7 @@ class Home extends Component
 //        $this->stepValidator(true);
         $this->step --;
         $this->progressBarPercentageCalculator();
+        if ($this->step == 5) $this->chartGenerator();
     }
 
     public function stepValidator($goingToPreviousStep = false)
@@ -66,6 +71,42 @@ class Home extends Component
                 break;
         }
     }
+
+    private function chartGenerator():void
+    {
+        $this->chartLabels = [];
+        $this->chartValues = [];
+        $w = $this->weight;
+        $iw = $this->idealWeight;
+        for ($i=0;$i<=30;$i++) {
+            $result = 0;
+            $weightOnSeventhDay = $w - 0.1 * ($w - $iw);
+            switch (true)
+            {
+                case ($i==0):
+                case ($i==3):
+                    $result = $this->weight;
+                case ($i<3):
+                    $result = $this->weight + array_rand([1,1.5,2]) * (($w<$iw) ? -1 : 1);
+                    break;
+                case ($i>3 && $i<=7):
+                    $result = ((($weightOnSeventhDay - $w) / 4) * ($i - 3)) + $w;
+                    break;
+                case ($i>7 && $i<30):
+                    $result = ((($iw - $weightOnSeventhDay) / 23) * ($i - 30)) + $iw;
+                    break;
+                case ($i == 30):
+                    $result = $this->idealWeight;
+                    break;
+            }
+            $result = round($result);
+            $this->chartLabels[] = $i;
+            $this->chartValues[] = $result;
+        }
+
+        $this->js("loadChart('" . json_encode($this->chartLabels). "', '". json_encode($this->chartValues) . "')");
+    }
+
 
     public function render()
     {
